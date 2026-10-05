@@ -22,6 +22,22 @@ go build -o bin/server ./cmd/server
 ./bin/server
 ```
 
+## Docker
+
+```bash
+docker build -t go-api-app .
+docker run -d --name go-api-app -p 8080:8080 go-api-app
+
+curl localhost:8080/health
+```
+
+Ganti port di dalam container dengan env `PORT`, misalnya
+`docker run -p 3000:3000 -e PORT=3000 go-api-app`. Nama host di respons bisa
+diatur dengan `--hostname`, misalnya `docker run --hostname api-1 ...`.
+
+Image memakai multi-stage build dengan runtime `distroless/static` (tanpa shell,
+berjalan sebagai user non-root).
+
 ## Endpoint
 
 | Method | Path                  | Keterangan              |
