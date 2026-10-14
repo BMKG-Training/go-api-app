@@ -35,8 +35,18 @@ Ganti port di dalam container dengan env `PORT`, misalnya
 `docker run -p 3000:3000 -e PORT=3000 go-api-app`. Nama host di respons bisa
 diatur dengan `--hostname`, misalnya `docker run --hostname api-1 ...`.
 
-Image memakai multi-stage build dengan runtime `distroless/static` (tanpa shell,
-berjalan sebagai user non-root).
+Image memakai multi-stage build: binary di-build di image `golang`, lalu hanya
+binary-nya yang disalin ke image `alpine` yang kecil.
+
+### Docker Compose
+
+```bash
+docker compose up -d --build
+docker compose logs -f
+docker compose down
+```
+
+Konfigurasi service ada di [compose.yaml](compose.yaml).
 
 ## Endpoint
 

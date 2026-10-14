@@ -1,0 +1,11 @@
+services:
+  go-api-app:
+    build: .
+    image: go-api-app
+    container_name: go-api-app
+    hostname: go-api-app
+    environment:
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
